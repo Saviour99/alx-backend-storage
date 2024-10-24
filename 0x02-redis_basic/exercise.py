@@ -65,8 +65,7 @@ def replay(method: Callable) -> None:
     print(f"{method_name} was called {num_calls} times:")
 
     for input_data, output_data in zip(inputs, outputs):
-        print(f"{method_name}(*{input_data.decode('utf-8')})
-              -> {output_data.decode('utf-8')}")
+        print(f"{method_name}(*{input_data.decode('utf-8')})-> {output_data.decode('utf-8')}")
 
 
 class Cache:
@@ -142,3 +141,10 @@ class Cache:
         - int: The integer value.
         """
         return self.get(key, lambda x: int(x))
+
+if __name__ == "__main__":
+    cache = Cache()
+    cache.store("foo")
+    cache.store("bar")
+    cache.store(42)
+    replay(cache.store)
