@@ -36,7 +36,7 @@ def call_history(method: Callable) -> Callable:
     and the outputs to "<method>:outputs".
     """
     @wraps(method)
-    def wrapper(self, *args, **kwds)
+    def wrapper(self, *args, **kwds):
         inputs = f"{method.__qualname__}:inputs"
         outputs = f"{method.__qualname__}:outputs"
         self._redis.rpush(inputs, str(args))
